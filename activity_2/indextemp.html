@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Activity 2</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        let fruits_basket = [
+            "Apple", "Blueberry", "Dragonfruit", "Orange", "Lychee", "Lemon"
+        ];
+
+        // Change the CSS property background (lightgray)
+        d3.select("body")
+	            .style("background-color", "#EEE"); 
+
+        // Append paragraphs and highlight one element
+        d3.select("body").selectAll("p")
+          .data(fruits_basket)
+          .enter()
+          .append("p")
+          .text((d) => {return d})
+          .attr("class", "custom-paragraph")
+          .style(
+            "font-weight", d => {
+                if (d == "Apple"){
+                    return "bold"
+                } else {
+                    return "normal"
+                }
+            }
+          );
+        
+        let numericData = [1, 2, 4, 8, 16];
+
+        // Add svg element (drawing space)
+        let svg = d3.select("body").append("svg")
+            .attr("width", 300)
+            .attr("height", 50);
+
+        // Add rectangle
+        svg.selectAll("rect")
+            .data(numericData)
+            .enter()
+            .append("rect")
+            .attr("fill", "lightblue")
+            .attr("width", 50)
+            .attr("height", 50)
+            .attr("y", 0)
+            .attr("x", (d, i) => i * 60)
+      </script>
+
+</body>
+</html>
+

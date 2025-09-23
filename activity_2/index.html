@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Activity II</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        let sandwiches = [
+            { name: "Thesis", price: 7.95, size: "large" },
+            { name: "Dissertation", price: 8.95, size: "large" },
+            { name: "Highlander", price: 6.50, size: "small" },
+            { name: "Just Tuna", price: 6.50, size: "small" },
+            { name: "So-La", price: 7.95, size: "large" },
+            { name: "Special", price: 12.50, size: "small" }
+        ];
+
+        let svg = d3.select("body").append("svg")
+            .attr("width", 300)
+            .attr("height", 50);
+
+        svg.selectAll("circle")
+            .data(sandwiches)
+            .enter()
+            .append("circle")
+            .attr("cx", (d, i) => 25 + i * 45)
+            .attr("cy", 25)
+            .attr("r", d => d.size === "large" ? 12 : 6)
+            .attr("fill", d => d.price < 7 ? "green" : "yellow")
+            .attr("stroke", "black");
+    </script>
+</body>
+</html>
