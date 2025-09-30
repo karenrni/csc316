@@ -30,4 +30,20 @@ function updateChart() {
      * 6. Retrieve the selected category from the dropdown.
      * 7. Filter the attractions array to show only attractions that match the selected category, or all if 'all' is selected.
      * **************************************************/
+     let selectedCategory = document.getElementById("attraction-category").value;
+
+     if (selectedCategory !== "all") {
+          attractions = attractions.filter(function(attraction) {
+              return attraction.Category === selectedCategory;
+          });
+     }
+
+     attractions.sort(function(a, b) {
+          return b.Visitors - a.Visitors;
+     });
+     
+     let topAttractions = attractions.slice(0, 5);
+
+     renderBarChart(topAttractions);
 }
+document.getElementById("attraction-category").addEventListener("change", updateChart);
